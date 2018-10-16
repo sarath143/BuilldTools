@@ -32,7 +32,7 @@ public class Practice {
                 .map(Optional::get)
                 .forEach(result -> System.out.println(result));
 
-
+        System.out.println("Program completed");
     }
 
 }
