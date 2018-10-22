@@ -1,4 +1,4 @@
-package buildtools.service;
+package com.hp.buildtools.service1;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

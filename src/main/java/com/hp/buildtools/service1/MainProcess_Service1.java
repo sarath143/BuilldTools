@@ -1,7 +1,7 @@
-package buildtools.service;
+package com.hp.buildtools.service1;
 
 import com.hp.buildtools.config.DBConfig;
-import com.hp.buildtools.utils.DBMonitoring;
+import com.hp.buildtools.utils.DataSourceInformation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import javax.sql.DataSource;
 import org.apache.commons.lang3.time.StopWatch;
 
-public class MainProcess_Sol2 {
+public class MainProcess_Service1 {
     private static DataSource dataSource1;
     private static DataSource dataSource2;
     private static ExecutorService service;
@@ -23,13 +23,13 @@ public class MainProcess_Sol2 {
     private static AtomicLong countIncrement = new AtomicLong();
 
     public static void main(String args[]) {
-        dataSource1 = DBConfig.getDataSource1();
-        dataSource2 = DBConfig.getDataSource2();
+        dataSource1 = DBConfig.getDataSource1("Pool-1");
+        dataSource2 = DBConfig.getDataSource2("Pool-2");
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
         //To monitor the database connections utilization by threads.
-        scheduledExecutorService.scheduleWithFixedDelay (()->DBMonitoring.getDBMonitoringInfo("Pool-1"),0 , 5,TimeUnit.SECONDS );
-        scheduledExecutorService.scheduleWithFixedDelay (()->DBMonitoring.getDBMonitoringInfo("Pool-2"),0 , 5,TimeUnit.SECONDS );
+        scheduledExecutorService.scheduleWithFixedDelay (()-> DataSourceInformation.getDBMonitoringInfo("Pool-1"),0 , 5,TimeUnit.SECONDS );
+        scheduledExecutorService.scheduleWithFixedDelay (()-> DataSourceInformation.getDBMonitoringInfo("Pool-2"),0 , 5,TimeUnit.SECONDS );
 
         Predicate<SQLProfile> isDBSQLQuery_Results_Same = sqlProfile -> {
             ExecutionSQL queryDB1 = new ExecutionSQL(sqlProfile, dataSource1 );

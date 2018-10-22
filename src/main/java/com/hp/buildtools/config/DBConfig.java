@@ -1,4 +1,4 @@
-package buildtools.config;
+package com.hp.buildtools.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -6,13 +6,13 @@ import javax.sql.DataSource;
 
 public class DBConfig {
 
-    public static DataSource getDataSource1() {
-        return createDataSource("Pool-1", "com.microsoft.sqlserver.jdbc.SQLServerDataSource",
+    public static DataSource getDataSource1(String poolName) {
+        return createDataSource(poolName, "com.microsoft.sqlserver.jdbc.SQLServerDataSource",
                 "mytestdb","mytestuser", "Test@123!", 10, 4);
     }
 
-    public static DataSource getDataSource2() {
-        return createDataSource("Pool-2", "com.microsoft.sqlserver.jdbc.SQLServerDataSource",
+    public static DataSource getDataSource2(String poolName) {
+        return createDataSource(poolName, "com.microsoft.sqlserver.jdbc.SQLServerDataSource",
                 "mytestdb1","mytestuser", "Test@123!", 10, 4);
     }
 

@@ -1,4 +1,4 @@
-package buildtools.utils;
+package com.hp.buildtools.utils;
 
 import com.zaxxer.hikari.HikariPoolMXBean;
 import java.lang.management.ManagementFactory;
@@ -7,7 +7,7 @@ import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
-public class DBMonitoring {
+public class DataSourceInformation {
 
     public static void getDBMonitoringInfo(String poolName){
         MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();

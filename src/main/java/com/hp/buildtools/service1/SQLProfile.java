@@ -1,4 +1,4 @@
-package buildtools.service;
+package com.hp.buildtools.service1;
 
 public class SQLProfile {
     private long id;
